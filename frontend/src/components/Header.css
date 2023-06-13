@@ -1,0 +1,99 @@
+.nav-bar-ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 10px;
+  overflow: hidden;
+
+  background: hsla(13, 93%, 67%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(13, 93%, 67%, 1) 0%,
+    hsla(21, 91%, 73%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(13, 93%, 67%, 1) 0%,
+    hsla(21, 91%, 73%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(13, 93%, 67%, 1) 0%,
+    hsla(21, 91%, 73%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F97D5B", endColorstr="#F9A87B", GradientType=1 );
+
+  box-shadow: 0 -6px 20px 20px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  height: 45px;
+  font-size: 16px;
+}
+.navbar-image,
+.navbar-brand {
+  float: left;
+}
+
+img.headerImg {
+  width: 30px;
+  height: 34px;
+}
+
+.navbar-brand {
+  margin-top: 100%;
+  margin: 50px;
+  padding: 0px;
+  margin: 0px;
+  float: center;
+  line-height: 1px;
+  text-align: center;
+}
+
+li {
+  float: left;
+}
+
+li a,
+.dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover,
+.dropdown:hover .dropbtn {
+  background-color: gainsboro;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

@@ -1,0 +1,52 @@
+.healthDec {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 2;
+  gap: 0.4rem;
+  width: 900px;
+  padding: 1.3rem;
+  min-height: 250px;
+  position: absolute;
+  z-index: 2;
+  top: 20%;
+  left: 20%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 450px;
+    padding: 1.3rem;
+    min-height: 250px;
+    position: absolute;
+    z-index: 2;
+    top: 20%;
+    left: 33%;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.8rem 1.4rem;
+    font-weight: 700;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1em;
+  }

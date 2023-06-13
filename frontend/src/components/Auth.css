@@ -1,0 +1,22 @@
+.authentication__header {
+    color: white;
+    text-align: center;
+  }
+  
+  .authentication {
+    /* width: 90%; */
+    /* max-width: 25rem; */
+    /* margin: 7rem auto; */
+    text-indent: 50px;
+    display: inline;
+    line-height: 35px;
+
+  }
+  .space{
+    text-indent: 50px;
+
+  }
+  
+  .authentication form {
+    margin-bottom: 1rem;
+  }
