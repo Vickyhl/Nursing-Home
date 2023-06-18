@@ -1,4 +1,4 @@
-import { validationResult } from "express-validator";
+import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import HttpError from "../models/httpError.js";
 import User from "../models/userModel.js";
@@ -20,16 +20,37 @@ export const getUsers = async (req, res, next) => {
   res.json({ users: users.map((user) => user.toObject({ getters: true })) });
 };
 
-export const signup = async (req, res, next) => {
-  console.log(req.body);
+export const updateUser = async (req, res, next) => {
+  const updatedUser = req.body;
+  const uid = updatedUser._id;
+  // console.log(uid);
 
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return next(
-      new HttpError("Invalid inputs passed, please check your data.", 422)
-    );
+  const user = await User.findById(uid);
+
+  // Update the user's information
+  user.allergies = updatedUser.allergies;
+  user.medicalHistory = updatedUser.medicalHistory;
+
+  await user.save();
+
+  return res.json({ message: "User updated successfully", user });
+};
+
+export const getUserById = async (req, res, next) => {
+  const uid = req.params.uid;
+  let user;
+  if (mongoose.isValidObjectId(uid)) {
+    user = await User.findOne({ _id: uid });
   }
+  // console.log(user);
 
+  if (!user) {
+    return res.json({ message: "The requested id is not found" });
+  }
+  return res.json({ user });
+};
+
+export const signup = async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
   let existingUser;
   try {
@@ -57,9 +78,9 @@ export const signup = async (req, res, next) => {
   });
 
   try {
-    console.log(createdUser);
     await createdUser.save();
   } catch (err) {
+    console.error(err);
     return res.json({ message: "Signing up failed, please try again later" });
   }
 

@@ -44,6 +44,9 @@ const Header = (handleClick) => {
           )}
         </div>
       </li>
+      <li>
+        <a href="/viewMedicalHistory">View Medical History</a>
+      </li>
     </ul>
   );
 };

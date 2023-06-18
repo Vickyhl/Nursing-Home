@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { logEvent } from "./LoggingService";
 import "../components/Login.css";
+import loginPic from "./images/loginPic.jpg";
 
 export const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -40,11 +41,14 @@ export const Login = () => {
   };
 
   return (
-    <div>
-      <div className="login">
+    <div className="login" style={{ borderRadius: 16, height: 400 }}>
+      <div className="login-background">
+        <h1 className="login-header">Welcome</h1>
+        <br />
         <form>
           <label htmlFor="email">Email</label>
           <input
+            className="login-input"
             type="email"
             id="email"
             name="email"
@@ -54,6 +58,7 @@ export const Login = () => {
 
           <label htmlFor="password">Password</label>
           <input
+            className="login-password-input"
             type="password"
             id="password"
             name="password"
@@ -67,21 +72,9 @@ export const Login = () => {
           </div>
         </form>
       </div>
-      {errorMessage && (
-        <div className="modal hidden">
-          <div className="flex">
-            <button className="btn-close" onClick={closeModal}>
-              ⨉
-            </button>
-            <div className="modal-text">
-              Your email or password is incorrect
-            </div>
-            <button className="btn-ok" onClick={closeModal}>
-              Okay
-            </button>
-          </div>
-        </div>
-      )}
+      <div className="loginPic">
+        <img className="loginPic" src={loginPic}></img>
+      </div>
       <div className="overlay hidden"></div>
     </div>
   );

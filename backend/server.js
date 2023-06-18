@@ -3,9 +3,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import HttpError from "./models/httpError.js";
 import cors from "cors";
-import Blood from "./models/bloodStock.js";
-import User from "./models/userModel.js";
 import userRoutes from "./routes/userRoutes.js";
+import medicalHistoryRoutes from "./routes/medicalHistoryRoutes.js";
 import auditTrailRoutes from "./routes/auditTrailRoutes.js";
 
 const app = express();
@@ -26,6 +25,7 @@ app.use((req, res, next) => {
 
 app.use("/api/users", userRoutes);
 app.use("/api/auditTrails", auditTrailRoutes);
+app.use("/api/medicalHistory", medicalHistoryRoutes);
 
 app.use((req, res, next) => {
   const error = new HttpError("Could not find this route.", 404);

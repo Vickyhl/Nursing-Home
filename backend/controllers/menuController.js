@@ -339,7 +339,6 @@ export const personalizedMenu = async (req, res, next) => {
     const sess = await mongoose.startSession();
     sess.startTransaction();
     await Menu.collection.insertOne(createdMenu, { session: sess });
-    // await createdMenu.save({ session: sess });
     subjectUser.menus.push(createdMenu);
     await subjectUser.save({ session: sess });
     await sess.commitTransaction();
@@ -352,84 +351,3 @@ export const personalizedMenu = async (req, res, next) => {
 
   res.status(201).json({ menu: createdMenu });
 };
-
-// export const updatePlace = async (req, res, next) => {
-//   const errors = validationResult(req);
-//   if (!errors.isEmpty()) {
-//     return next(
-//       new HttpError("Invalid inputs passed, please check your data.", 422)
-//     );
-//   }
-
-//   const { title, description } = req.body;
-//   const placeId = req.params.pid;
-
-//   let place;
-//   try {
-//     place = await findById(placeId);
-//   } catch (err) {
-//     const error = new HttpError(
-//       "Something went wrong, could not update place.",
-//       500
-//     );
-//     return next(error);
-//   }
-
-//   place.title = title;
-//   place.description = description;
-
-//   try {
-//     await place.save();
-//   } catch (err) {
-//     const error = new HttpError(
-//       "Something went wrong, could not update place.",
-//       500
-//     );
-//     return next(error);
-//   }
-
-//   res.status(200).json({ place: place.toObject({ getters: true }) });
-// };
-
-// export const deletePlace = async (req, res, next) => {
-//   const placeId = req.params.pid;
-
-//   let place;
-//   try {
-//     place = await findById(placeId).populate("creator");
-//   } catch (err) {
-//     const error = new HttpError(
-//       "Something went wrong, could not delete place.",
-//       500
-//     );
-//     return next(error);
-//   }
-
-//   if (!place) {
-//     const error = new HttpError("Could not find place for this id.", 404);
-//     return next(error);
-//   }
-
-//   const imagePath = place.image;
-
-//   try {
-//     const sess = await startSession();
-//     sess.startTransaction();
-//     await place.remove({ session: sess });
-//     place.creator.places.pull(place);
-//     await place.creator.save({ session: sess });
-//     await sess.commitTransaction();
-//   } catch (err) {
-//     const error = new HttpError(
-//       "Something went wrong, could not delete place.",
-//       500
-//     );
-//     return next(error);
-//   }
-
-//   unlink(imagePath, (err) => {
-//     console.log(err);
-//   });
-
-//   res.status(200).json({ message: "Deleted place." });
-// };

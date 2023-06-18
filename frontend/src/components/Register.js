@@ -77,58 +77,62 @@ const Register = () => {
   return (
     <>
       {/* {isLoading && <Loader />} */}
-      <form>
-        <label htmlFor="firstname">First Name</label>
-        <input
-          className="login-input"
-          id="firstname"
-          onChange={handleChange}
-          name="firstName"
-          value={user.firstName}
-        />
+      <div className="register">
+        <form>
+          <label htmlFor="firstname">First Name</label>
+          <input
+            className="login-input"
+            id="firstname"
+            onChange={handleChange}
+            name="firstName"
+            value={user.firstName}
+          />
 
-        <label htmlFor="lastname">Last Name</label>
-        <input
-          className="login-input"
-          id="lastname"
-          onChange={handleChange}
-          name="lastName"
-          value={user.lastName}
-        />
-        {errors.name && <div className="validationError">{errors.name}</div>}
+          <label htmlFor="lastname">Last Name</label>
+          <input
+            className="login-input"
+            id="lastname"
+            onChange={handleChange}
+            name="lastName"
+            value={user.lastName}
+          />
+          {errors.name && <div className="validationError">{errors.name}</div>}
 
-        <label htmlFor="email">Email</label>
-        <input
-          className="login-input"
-          type="email"
-          id="email"
-          name="email"
-          value={user.email}
-          onChange={handleChange}
-        />
-        {errors.email && <div className="validationError">{errors.email}</div>}
+          <label htmlFor="email">Email</label>
+          <input
+            className="login-input"
+            type="email"
+            id="email"
+            name="email"
+            value={user.email}
+            onChange={handleChange}
+          />
+          {errors.email && (
+            <div className="validationError">{errors.email}</div>
+          )}
 
-        <label htmlFor="password">Password</label>
-        <input
-          className="login-input"
-          type="password"
-          id="password"
-          name="password"
-          value={user.password}
-          onChange={handleChange}
-        />
-        {errors.password && (
-          <div className="validationError">{errors.password}</div>
-        )}
-        {errors.signUp && (
-          <div className="validationError">{errors.signUp}</div>
-        )}
-        <div className="btn-container">
-          <button className="btn" onClick={handleSubmit}>
-            Register
-          </button>
-        </div>
-      </form>
+          <label htmlFor="password">Password</label>
+          <input
+            className="login-input"
+            type="password"
+            id="password"
+            name="password"
+            value={user.password}
+            onChange={handleChange}
+          />
+          {errors.password && (
+            <div className="validationError">{errors.password}</div>
+          )}
+          {errors.signUp && (
+            <div className="validationError">{errors.signUp}</div>
+          )}
+          <div className="btn-container">
+            <button className="btn" onClick={handleSubmit}>
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   );
 };

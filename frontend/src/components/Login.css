@@ -13,40 +13,95 @@
   left: 20%;
   background-color: white;
   border: 1px solid #ddd;
-  border-radius: 15px;
+}
+
+h1.login-header {
+  font-size: 24px;
+  margin-top: 0;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
 }
 
 .login {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.4rem;
-    width: 450px;
-    padding: 1.3rem;
-    min-height: 250px;
-    position: absolute;
-    z-index: 2;
-    top: 20%;
-    left: 33%;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 15px;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
 
-  }
+.login-background {
+  height: 400px;
+  width: 400px;
+  background-color: #e2e2e266;
+  display: table-cell;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border: 1px solid #ddd;
+  border-right: none;
+}
 
-  button {
-    cursor: pointer;
-    border: none;
-    font-weight: 600;
-  }
+.loginPic {
+  height: 400px;
+  width: 400px;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  display: table-cell;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid #ddd;
+  border-left: none;
+}
 
-  .btn {
-    display: inline-block;
-    padding: 0.8rem 1.4rem;
-    font-weight: 700;
-    background-color: black;
-    color: white;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 1em;
-  }
+.login-input {
+  margin-bottom: 30px;
+  font-family: "RobotoCondensed-Regular";
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+input.login-password-input {
+  margin-bottom: 10px;
+  font-family: "RobotoCondensed-Regular";
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  font-weight: 700;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.register {
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 450px;
+  padding: 1.3rem;
+  position: absolute;
+  z-index: 2;
+  margin-top: 80px;
+  left: 33%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  font-family: "RobotoCondensed-Regular", sans-serif;
+}
