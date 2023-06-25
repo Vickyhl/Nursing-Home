@@ -3,8 +3,7 @@ import bcrypt from "bcryptjs";
 import HttpError from "../models/httpError.js";
 import User from "../models/userModel.js";
 import jwt from "jsonwebtoken";
-import crypto from "crypto";
-import nodemailer from "nodemailer";
+import Appointment from "../models/appointmentModel.js";
 
 export const getUsers = async (req, res, next) => {
   let users;
@@ -48,6 +47,165 @@ export const getUserById = async (req, res, next) => {
     return res.json({ message: "The requested id is not found" });
   }
   return res.json({ user });
+};
+
+export const getAppointments = async (req, res, next) => {
+  // Create a new array to store the extracted appointments with patient names
+  const extractedAppointments = [];
+  User.find({}, { firstName: 1, lastName: 1, appointments: 1 }).then(
+    (users) => {
+      const uniqueAppointments = new Map();
+
+      users.forEach((user) => {
+        if (user.appointments && user.appointments.length > 0) {
+          user.appointments.forEach((appointment) => {
+            const {
+              date,
+              time,
+              location,
+              escort,
+              treatmentType,
+              therapistName,
+              _id,
+              userId,
+            } = appointment;
+
+            // Ensure the appointment has the required fields
+            if (
+              date &&
+              location &&
+              typeof escort === "boolean" &&
+              therapistName &&
+              time
+            ) {
+              const key = `${user.firstName}${user.lastName}${date}${location}${escort}${therapistName}${time}`;
+              // console.log("key:", key);
+
+              // Check if the appointment is unique based on a key
+              if (!uniqueAppointments.has(key)) {
+                uniqueAppointments.set(key, true);
+
+                const extractedAppointment = {
+                  firstName: user.firstName,
+                  lastName: user.lastName,
+                  date,
+                  time,
+                  location,
+                  escort,
+                  treatmentType,
+                  therapistName,
+                  _id,
+                  userId,
+                };
+                extractedAppointments.push(extractedAppointment);
+              }
+            }
+          });
+        }
+      });
+
+      // console.log("Extracted appointments:", extractedAppointments);
+      res.json({ extractedAppointments });
+    }
+  );
+};
+
+export const AddAppointment = async (req, res, next) => {
+  const { date, time, location, escortValue, treatmentType, therapistName } =
+    req.body;
+
+  console.log(escortValue);
+
+  const uid = req.params.uid;
+
+  try {
+    // Create a new appointment in the database or perform other relevant actions
+    const newAppointment = await new Appointment({
+      date,
+      time,
+      location,
+      escort: escortValue,
+      treatmentType,
+      therapistName,
+      userId: uid, // Assuming you have a userId field to associate with the appointment
+    });
+    console.log(newAppointment);
+    await newAppointment.save();
+
+    // Update the user with the newly created appointment
+    const user = await User.findByIdAndUpdate(
+      uid,
+      { $push: { appointments: newAppointment } },
+      { new: true }
+    );
+
+    // Return the newly created appointment as the response
+    res.status(201).json(newAppointment);
+  } catch (error) {
+    // Handle any errors that occurred during the creation of the appointment
+    console.error("Error creating appointment:", error);
+    res.status(500).json({ message: "Failed to create appointment." });
+  }
+};
+
+export const updateAppointment = async (req, res, next) => {
+  try {
+    const updatedAppointments = req.body; // Assume req.body is an array of updated appointments
+    console.log(updatedAppointments);
+    // Use Promise.all to run all the promises concurrently
+    await Promise.all(
+      updatedAppointments.map(async (updatedAppointment) => {
+        const appointmentId = updatedAppointment._id;
+        const userId = updatedAppointment.userId;
+
+        // Update the appointment in the appointment collection using Mongoose
+        await Appointment.updateOne(
+          { _id: appointmentId },
+          { $set: updatedAppointment }
+        );
+
+        // Update the appointment in the user collection using Mongoose
+        await User.updateOne(
+          { _id: userId, "appointments._id": appointmentId },
+          { $set: { "appointments.$": updatedAppointment } }
+        );
+      })
+    );
+
+    // Return a success response
+    res.status(200).json({ message: "Appointments updated successfully" });
+  } catch (error) {
+    // Handle errors
+    console.error("Error updating appointments:", error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while updating the appointments" });
+  }
+};
+
+export const removeAppointment = async (req, res, next) => {
+  try {
+    const aid = req.body._id;
+    const uid = req.body.userId;
+    // console.log(typeof aid, typeof uid);
+
+    // Delete the appointment from the appointment collection using Mongoose
+    await Appointment.deleteOne({ _id: aid });
+
+    // Delete the appointment from the user collection using Mongoose
+    await User.updateOne(
+      { _id: uid },
+      { $pull: { appointments: { _id: aid } } }
+    );
+    // Return a success response
+    res.status(200).json({ message: "Appointment removed successfully" });
+  } catch (error) {
+    // Handle errors
+    console.error("Error removing appointment:", error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while removing the appointment" });
+  }
 };
 
 export const signup = async (req, res, next) => {
@@ -114,7 +272,7 @@ export const login = async (req, res, next) => {
     );
     return next(error);
   }
-  console.log(existingUser);
+  // console.log(existingUser);
   if (!existingUser) {
     const error = new HttpError("Your email or password is incorrect", 401);
     // res.send({ message: "Your email or password is incorrect" });
@@ -156,73 +314,4 @@ export const login = async (req, res, next) => {
     existingUser,
     token: token,
   });
-};
-
-export const forgotPassword = async (req, res, next) => {
-  let user;
-  user = await User.findOne({ email: req.body.email });
-  if (!user) {
-    return res.send({ message: "Failed to send reset password email" });
-  }
-
-  // Generate a unique password reset token
-  const token = crypto.randomBytes(20).toString("hex");
-
-  // Calculate the expiration date of the token (1 hour from now)
-  const expirationDate = new Date();
-  expirationDate.setHours(expirationDate.getHours() + 1);
-  console.log(req.body.email);
-
-  // Store the token in the database
-  user.passwordResetToken = token;
-  user.passwordResetExpires = expirationDate;
-  await user.save();
-
-  // Send an email to the user with the password reset link
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "vickyeaf@gmail.com",
-      pass: "fcevjskxhtvcxihy",
-    },
-  });
-  const mailOptions = {
-    from: "vickyeaf@gmail.com",
-    to: req.body.email,
-    subject: "Password reset",
-    html: `Click <a href="http://localhost:3000/resetPassword?token=${token}">here</a> to reset your password. This link will expire in 1 hour.`,
-  };
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-      res.status(500).json({ message: "Failed to send reset password email" });
-    } else {
-      console.log(info);
-      res.status(200).json({
-        message:
-          "An email has been sent with instructions to reset your password.",
-      });
-    }
-  });
-};
-
-export const resetPassword = async (req, res, next) => {
-  const { password, resetToken } = req.body;
-
-  // Find user with matching reset token
-  const user = await User.findOne({ passwordResetToken: resetToken });
-  if (!user) {
-    return res.status(400).json({ error: "Invalid or expired token" });
-  }
-  console.log("the resetToken is:", resetToken);
-  console.log("the users password is:", password);
-
-  // Reset password and clear reset token from database
-  user.password = password;
-  console.log("user password is:", user.password);
-  user.passwordResetToken = undefined;
-  user.passwordResetExpires = undefined;
-  await user.save();
-
-  return res.json({ message: "Password reset successfully" });
 };

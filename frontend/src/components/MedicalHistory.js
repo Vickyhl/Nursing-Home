@@ -226,6 +226,7 @@ function MedicalHistory() {
                   <span>{history.diseaseName}</span>
                 )}
               </h4>
+
               {history.diseaseName && (
                 <>
                   <p>

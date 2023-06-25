@@ -5,7 +5,6 @@ import axios from "axios";
 
 function ViewMedicalHistory() {
   const [patient, setPatient] = useState();
-  const [initialMedicalHistory, setInitialMedicalHistory] = useState([]);
 
   useEffect(() => {
     fetchMedicalHistory();

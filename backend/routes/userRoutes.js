@@ -4,10 +4,12 @@ import {
   getUsers,
   signup,
   login,
-  forgotPassword,
-  resetPassword,
   getUserById,
   updateUser,
+  getAppointments,
+  AddAppointment,
+  removeAppointment,
+  updateAppointment,
 } from "../controllers/userController.js";
 
 const router = Router();
@@ -28,7 +30,9 @@ router.post(
 router.post("/login", login);
 router.get("/getUserById/:uid", getUserById);
 router.put("/updateUser/:uid", updateUser);
-router.post("/forgotPassword", forgotPassword);
-router.put("/resetPassword", resetPassword);
+router.get("/getAppointments", getAppointments);
+router.post("/AddAppointment/:uid", AddAppointment);
+router.post("/removeAppointment", removeAppointment);
+router.post("/updateAppointment", updateAppointment);
 
 export default router;

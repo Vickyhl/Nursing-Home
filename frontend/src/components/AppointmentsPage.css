@@ -1,0 +1,60 @@
+.appointment-class {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.fixed-table {
+  table-layout: fixed;
+  margin: 0 auto;
+  margin-top: 100px;
+  border: 1px solid #ddd;
+  width: 50%; /* Set the table width to ensure it fits within its container */
+  margin-bottom: 20px;
+}
+
+.fixed-table th,
+.fixed-table td {
+  width: 33.33%; /* Set the width of each column */
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.appointment-button {
+  display: flex;
+  margin: 0 auto;
+
+  padding: 0.8rem 1.4rem;
+  font-weight: 700;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.appointment-button:hover {
+  background-color: hsla(13, 93%, 67%, 1);
+}
+
+.appointment-input {
+  font-family: "RobotoCondensed-Regular";
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+.remove-button {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  font-weight: 700;
+  background-color: hsla(13, 93%, 67%, 1);
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1em;
+  height: 18px;
+  width: 100px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}

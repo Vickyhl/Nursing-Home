@@ -1,15 +1,17 @@
 import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 import uniqueValidator from "mongoose-unique-validator";
+import Appointment from "./appointmentModel.js";
 
 const userSchema = mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: true,
+      required: false,
     },
     lastName: {
       type: String,
-      required: true,
+      required: false,
     },
     email: {
       type: String,
@@ -18,7 +20,7 @@ const userSchema = mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: false,
     },
     isNursemaid: {
       type: Boolean,
@@ -77,6 +79,7 @@ const userSchema = mongoose.Schema(
         ],
       },
     ],
+    appointments: [Appointment.schema],
     nutrition: {
       type: String,
       required: false,

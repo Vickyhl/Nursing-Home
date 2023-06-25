@@ -3,14 +3,9 @@ import React from "react";
 import Home from "./Home";
 import Register from "./Register";
 import Login from "./Login";
-import InRoutine from "./InRoutine";
-import MCI from "./MCI";
-import HealthDec from "./HealthDec";
-import Donation from "./Donation";
-import BloodStatus from "./BloodStatus";
-import Export from "./Export";
-import ViewMedicalHistory from "./ViewMedicalHistory";
 import MedicalHistory from "./MedicalHistory";
+import AppointmentsPage from "./AppointmentsPage";
+import AddAppointment from "./AddAppointment";
 
 const Routes1 = () => {
   return (
@@ -19,13 +14,9 @@ const Routes1 = () => {
       <Route path="/home" element={<Home />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/inRoutine" element={<InRoutine />} />
-      <Route path="/MCI" element={<MCI />} />
-      <Route path="/donateBlood" element={<Donation />} />
-      <Route path="/bloodStatus" element={<BloodStatus />} />
-      <Route path="/exportFiles" element={<Export />} />
-      <Route path="/HealthDec" element={<HealthDec />} />
       <Route path="/viewMedicalHistory" element={<MedicalHistory />} />
+      <Route path="/viewAppointments" element={<AppointmentsPage />} />
+      <Route path="/AddAppointments" element={<AddAppointment />} />
     </Routes>
   );
 };

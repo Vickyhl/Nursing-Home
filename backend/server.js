@@ -54,6 +54,7 @@ mongoose
   .connect("mongodb+srv://Vicky:123456EAF@eaf.rhcan5b.mongodb.net/NH", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    // useFindAndModify: false,
   })
   .then(() => {
     console.log("Connection Successfull");

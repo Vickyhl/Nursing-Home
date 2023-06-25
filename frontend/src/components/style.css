@@ -132,6 +132,10 @@ form input:hover {
   color: red;
 }
 
+.validation {
+  color: green;
+}
+
 .form-check {
   margin: 20px 0px;
 }
