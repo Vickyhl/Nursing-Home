@@ -6,6 +6,7 @@ import cors from "cors";
 import userRoutes from "./routes/userRoutes.js";
 import medicalHistoryRoutes from "./routes/medicalHistoryRoutes.js";
 import auditTrailRoutes from "./routes/auditTrailRoutes.js";
+import medicationsRoutes from "./routes/medicationsRoutes.js";
 
 const app = express();
 app.use(cors());
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
 app.use("/api/users", userRoutes);
 app.use("/api/auditTrails", auditTrailRoutes);
 app.use("/api/medicalHistory", medicalHistoryRoutes);
+app.use("/api/medications", medicationsRoutes);
 
 app.use((req, res, next) => {
   const error = new HttpError("Could not find this route.", 404);

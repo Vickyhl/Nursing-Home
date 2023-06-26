@@ -125,15 +125,6 @@ function AddAppointment() {
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
-          {/* <input
-            className="AddaApointment-input"
-            placeholder="Enter patient id"
-            type="text"
-            id="escort"
-            value={escort}
-            onChange={(e) => setEscort(e.target.value)}
-            required
-          /> */}
           <br />
           <br />
 

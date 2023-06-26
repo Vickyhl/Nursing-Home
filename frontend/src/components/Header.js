@@ -47,6 +47,18 @@ const Header = (handleClick) => {
       <li>
         <a href="/viewMedicalHistory">View Medical History</a>
       </li>
+      <li className="dropdown">
+        <a href="" className="dropbtn">
+          Appointments
+        </a>
+        <div className="dropdown-content">
+          <a href="/viewAppointments">View Appointments</a>
+          <a href="/AddAppointments">Add new Appointment</a>
+        </div>
+      </li>
+      <li>
+        <a href="/AddMedications">Medications inventory</a>
+      </li>
     </ul>
   );
 };
