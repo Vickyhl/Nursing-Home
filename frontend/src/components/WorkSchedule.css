@@ -1,0 +1,38 @@
+.shift-table {
+  border-collapse: collapse;
+  width: 1024px;
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.work-schedule-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.work-schedule-button {
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 0.8rem 1.4rem;
+  font-weight: 700;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.work-schedule-button:hover {
+  background-color: hsla(13, 93%, 67%, 1);
+}
+
+.shift-table th,
+.shift-table td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}

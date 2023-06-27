@@ -10,6 +10,8 @@ import {
   AddAppointment,
   removeAppointment,
   updateAppointment,
+  saveSchedule,
+  getSchedule,
 } from "../controllers/userController.js";
 
 const router = Router();
@@ -34,5 +36,7 @@ router.get("/getAppointments", getAppointments);
 router.post("/AddAppointment/:uid", AddAppointment);
 router.post("/removeAppointment", removeAppointment);
 router.post("/updateAppointment", updateAppointment);
+router.get("/getSchedule", getSchedule);
+router.post("/saveSchedule", saveSchedule);
 
 export default router;

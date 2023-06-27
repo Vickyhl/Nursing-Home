@@ -4,6 +4,7 @@ import HttpError from "../models/httpError.js";
 import User from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 import Appointment from "../models/appointmentModel.js";
+import Schedule from "../models/scheduleModel.js";
 
 export const getUsers = async (req, res, next) => {
   let users;
@@ -208,6 +209,51 @@ export const removeAppointment = async (req, res, next) => {
   }
 };
 
+export const getSchedule = async (req, res, next) => {
+  try {
+    // Assuming Schedule.find() returns the array of objects you posted
+    const schedule = await Schedule.find({});
+
+    // Create an object to hold the shifts for each day
+    const formattedSchedule = {
+      Morning: [],
+      Noon: [],
+      Night: [],
+    };
+
+    // Iterate over the schedule array
+    for (let day of schedule) {
+      formattedSchedule.Morning.push(day.shifts.morning);
+      formattedSchedule.Noon.push(day.shifts.noon);
+      formattedSchedule.Night.push(day.shifts.night);
+    }
+
+    res.status(200).json({ schedule: formattedSchedule });
+  } catch (error) {
+    console.error("Error fetching schedule:", error);
+    res.status(500).json({ error: error.toString() });
+  }
+};
+
+export const saveSchedule = async (req, res, next) => {
+  const newSchedule = req.body.newSchedule; // Extract newSchedule from the request body
+
+  try {
+    // Remove all current documents
+    await Schedule.deleteMany({});
+
+    // Insert the new schedule
+    for (const daySchedule of newSchedule) {
+      const day = new Schedule(daySchedule);
+      await day.save();
+    }
+
+    res.status(200).send("Schedule updated successfully.");
+  } catch (error) {
+    console.error("Error saving schedule:", error);
+    res.status(500).send(error);
+  }
+};
 export const signup = async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
   let existingUser;
