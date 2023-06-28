@@ -8,6 +8,7 @@ import AppointmentsPage from "./AppointmentsPage";
 import AddAppointment from "./AddAppointment";
 import AddMedications from "./AddMedications";
 import WorkSchedule from "./WorkSchedule";
+import OrderingMedications from "./OrderingMedications";
 
 const Routes1 = () => {
   return (
@@ -21,6 +22,7 @@ const Routes1 = () => {
       <Route path="/AddAppointments" element={<AddAppointment />} />
       <Route path="/AddMedications" element={<AddMedications />} />
       <Route path="/workSchedule" element={<WorkSchedule />} />
+      <Route path="/orderMedication" element={<OrderingMedications />} />
     </Routes>
   );
 };
