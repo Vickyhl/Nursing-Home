@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./WorkSchedule.css";
 import axios from "axios";
+import back from "./images/back.jpeg";
 
 function WorkSchedule() {
   const [isEditing, setIsEditing] = useState(false);
@@ -89,6 +90,7 @@ function WorkSchedule() {
 
   return (
     <>
+      <img className="img-fluid" src={back} alt="homeImg" />
       {Object.keys(schedule).length > 0 && (
         <>
           <h1 className="work-schedule-header">Work schedule</h1>

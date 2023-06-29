@@ -45,6 +45,9 @@ const Header = (handleClick) => {
         </div>
       </li>
       <li>
+        <a href="/admissionForm">Admission form</a>
+      </li>
+      <li>
         <a href="/viewMedicalHistory">View Medical History</a>
       </li>
       <li className="dropdown">
@@ -57,13 +60,13 @@ const Header = (handleClick) => {
         </div>
       </li>
       <li>
-        <a href="/AddMedications">Medications inventory</a>
-      </li>
-      <li>
-        <a href="/workSchedule">Work schedule</a>
+        <a href="/AddMedications">Add medications</a>
       </li>
       <li>
         <a href="/orderMedication">Order medication</a>
+      </li>
+      <li>
+        <a href="/workSchedule">Work schedule</a>
       </li>
     </ul>
   );

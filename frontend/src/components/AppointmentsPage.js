@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./AppointmentsPage.css";
 import axios from "axios";
+import back from "./images/back.jpeg";
 
 function AppointmentsPage() {
   const [data, setData] = useState([]);
@@ -102,169 +103,173 @@ function AppointmentsPage() {
   }, []);
 
   return (
-    <div className="appointment-class">
-      {data.length > 0 ? (
-        <>
-          <table className="fixed-table">
-            <thead>
-              <tr>
-                <th></th>
-                {data.map((appointment) => (
-                  <th key={appointment.appointmentId}>
-                    {new Date(appointment.date).toLocaleDateString()}
-                    <button
-                      className="remove-button"
-                      onClick={() => removeAppointment(appointment)}
-                    >
-                      Remove
-                    </button>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Name</td>
-                {updatedData.map((appointment) => {
-                  const { _id, firstName, lastName } = appointment;
-                  return (
-                    <td key={_id}>
-                      {appointment.firstName} {appointment.lastName}
-                    </td>
-                  );
-                })}
-              </tr>
+    <>
+      <img className="img-fluid" src={back} alt="homeImg" />
 
-              <tr>
-                <td>Appointment time</td>
-                {updatedData.map((appointment) => {
-                  const { _id, time } = appointment;
-                  return (
-                    <td key={_id}>
-                      {editMode ? (
-                        <input
-                          className="appointment-input"
-                          type="text"
-                          name="time"
-                          value={appointment.time}
-                          onChange={(event) => handleInputChange(event, _id)}
-                        />
-                      ) : (
-                        time
-                      )}
-                    </td>
-                  );
-                })}
-              </tr>
+      <div className="appointment-class">
+        {data.length > 0 ? (
+          <>
+            <table className="fixed-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  {data.map((appointment) => (
+                    <th key={appointment.appointmentId}>
+                      {new Date(appointment.date).toLocaleDateString()}
+                      <button
+                        className="remove-button"
+                        onClick={() => removeAppointment(appointment)}
+                      >
+                        Remove
+                      </button>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Name</td>
+                  {updatedData.map((appointment) => {
+                    const { _id, firstName, lastName } = appointment;
+                    return (
+                      <td key={_id}>
+                        {appointment.firstName} {appointment.lastName}
+                      </td>
+                    );
+                  })}
+                </tr>
 
-              <tr>
-                <td>Location</td>
-                {updatedData.map((appointment) => {
-                  const { _id, location } = appointment;
-                  return (
-                    <td key={_id}>
-                      {editMode ? (
-                        <input
-                          className="appointment-input"
-                          type="text"
-                          name="location"
-                          value={appointment.location}
-                          onChange={(event) => handleInputChange(event, _id)}
-                        />
-                      ) : (
-                        location
-                      )}
-                    </td>
-                  );
-                })}
-              </tr>
+                <tr>
+                  <td>Appointment time</td>
+                  {updatedData.map((appointment) => {
+                    const { _id, time } = appointment;
+                    return (
+                      <td key={_id}>
+                        {editMode ? (
+                          <input
+                            className="appointment-input"
+                            type="text"
+                            name="time"
+                            value={appointment.time}
+                            onChange={(event) => handleInputChange(event, _id)}
+                          />
+                        ) : (
+                          time
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
 
-              <tr>
-                <td>Escort</td>
-                {updatedData.map((appointment) => {
-                  const { _id, escort } = appointment;
-                  return (
-                    <td key={_id}>
-                      {editMode ? (
-                        <select
-                          value={appointment.escort ? "Yes" : "No"}
-                          onChange={(event) => handleSelectChange(event, _id)}
-                        >
-                          <option value="Yes">Yes</option>
-                          <option value="No">No</option>
-                        </select>
-                      ) : escort ? (
-                        "Yes"
-                      ) : (
-                        "No"
-                      )}
-                    </td>
-                  );
-                })}
-              </tr>
+                <tr>
+                  <td>Location</td>
+                  {updatedData.map((appointment) => {
+                    const { _id, location } = appointment;
+                    return (
+                      <td key={_id}>
+                        {editMode ? (
+                          <input
+                            className="appointment-input"
+                            type="text"
+                            name="location"
+                            value={appointment.location}
+                            onChange={(event) => handleInputChange(event, _id)}
+                          />
+                        ) : (
+                          location
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
 
-              <tr>
-                <td>Treatment Type</td>
-                {updatedData.map((appointment) => {
-                  const { _id, treatmentType } = appointment;
-                  return (
-                    <td key={_id}>
-                      {editMode ? (
-                        <input
-                          className="appointment-input"
-                          name="treatmentType"
-                          type="text"
-                          value={appointment.treatmentType}
-                          onChange={(event) => handleInputChange(event, _id)}
-                        />
-                      ) : (
-                        treatmentType
-                      )}
-                    </td>
-                  );
-                })}
-              </tr>
+                <tr>
+                  <td>Escort</td>
+                  {updatedData.map((appointment) => {
+                    const { _id, escort } = appointment;
+                    return (
+                      <td key={_id}>
+                        {editMode ? (
+                          <select
+                            value={appointment.escort ? "Yes" : "No"}
+                            onChange={(event) => handleSelectChange(event, _id)}
+                          >
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                          </select>
+                        ) : escort ? (
+                          "Yes"
+                        ) : (
+                          "No"
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
 
-              <tr>
-                <td>Therapist Name</td>
-                {updatedData.map((appointment) => {
-                  const { _id, therapistName } = appointment;
-                  return (
-                    <td key={_id}>
-                      {editMode ? (
-                        <input
-                          className="appointment-input"
-                          name="therapistName"
-                          type="text"
-                          value={appointment.therapistName}
-                          onChange={(event) => handleInputChange(event, _id)}
-                        />
-                      ) : (
-                        therapistName
-                      )}
-                    </td>
-                  );
-                })}
-              </tr>
-            </tbody>
-          </table>
-          {editMode ? (
-            <button
-              className="appointment-button"
-              onClick={() => saveChanges(updatedData)}
-            >
-              Save
-            </button>
-          ) : (
-            <button className="appointment-button" onClick={toggleEditMode}>
-              Edit
-            </button>
-          )}
-        </>
-      ) : (
-        <p>No appointments available.</p>
-      )}
-    </div>
+                <tr>
+                  <td>Treatment Type</td>
+                  {updatedData.map((appointment) => {
+                    const { _id, treatmentType } = appointment;
+                    return (
+                      <td key={_id}>
+                        {editMode ? (
+                          <input
+                            className="appointment-input"
+                            name="treatmentType"
+                            type="text"
+                            value={appointment.treatmentType}
+                            onChange={(event) => handleInputChange(event, _id)}
+                          />
+                        ) : (
+                          treatmentType
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+
+                <tr>
+                  <td>Therapist Name</td>
+                  {updatedData.map((appointment) => {
+                    const { _id, therapistName } = appointment;
+                    return (
+                      <td key={_id}>
+                        {editMode ? (
+                          <input
+                            className="appointment-input"
+                            name="therapistName"
+                            type="text"
+                            value={appointment.therapistName}
+                            onChange={(event) => handleInputChange(event, _id)}
+                          />
+                        ) : (
+                          therapistName
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              </tbody>
+            </table>
+            {editMode ? (
+              <button
+                className="appointment-button"
+                onClick={() => saveChanges(updatedData)}
+              >
+                Save
+              </button>
+            ) : (
+              <button className="appointment-button" onClick={toggleEditMode}>
+                Edit
+              </button>
+            )}
+          </>
+        ) : (
+          <p>No appointments available.</p>
+        )}
+      </div>
+    </>
   );
 }
 

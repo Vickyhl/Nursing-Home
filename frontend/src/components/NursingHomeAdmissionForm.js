@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./NursingHomeAdmissionForm.css";
-import back from "./images/admission.jpeg";
+import back from "./images/back.jpeg";
 
 function NursingHomeAdmissionForm() {
   const [message, setMessage] = useState("");
@@ -75,7 +75,7 @@ function NursingHomeAdmissionForm() {
 
   return (
     <>
-      <img className="admission-img" src={back} alt="homeImg" />
+      <img className="img-fluid" src={back} alt="homeImg" />
       <h1 className="admission-header">Admission form</h1>
       <div className="admission-class">
         <form className="admission-form" onSubmit={handleSubmit}>

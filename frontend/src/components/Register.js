@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import Loader from "./Loader";
+import back from "./images/admission.jpeg";
 import "./Login.css";
 
 const Register = () => {
@@ -76,6 +76,7 @@ const Register = () => {
   };
   return (
     <>
+      <img className="admission-img" src={back} alt="homeImg" />
       {/* {isLoading && <Loader />} */}
       <div className="register">
         <form>
@@ -126,11 +127,9 @@ const Register = () => {
           {errors.signUp && (
             <div className="validationError">{errors.signUp}</div>
           )}
-          <div className="btn-container">
-            <button className="btn" onClick={handleSubmit}>
-              Register
-            </button>
-          </div>
+          <button className="btn-container" onClick={handleSubmit}>
+            Register
+          </button>
         </form>
       </div>
     </>

@@ -38,9 +38,7 @@ function AddMedications() {
     <>
       <div className="add-medications-class">
         <img className="add-medications-img" src={back} alt="homeImg" />
-        <h1 className="add-medications-header">
-          Medications inventory management
-        </h1>
+        <h1 className="add-medications-header">Add medications to inventory</h1>
         <label htmlFor="name">Name:</label>
         <input
           className="AddaApointment-input"
