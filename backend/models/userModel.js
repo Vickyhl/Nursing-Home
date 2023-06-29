@@ -84,8 +84,69 @@ const userSchema = mongoose.Schema(
       type: String,
       required: false,
     },
-    psychosocialAssesment: {
+    psychosocialAssessment: {
       type: String,
+      required: false,
+    },
+    // Newly added fields from the nursing home admission form
+    fullName: {
+      type: String,
+      required: false,
+    },
+    dateOfBirth: {
+      type: Date,
+      required: false,
+    },
+    ssn: {
+      type: String,
+      required: false,
+    },
+    address: {
+      type: String,
+      required: false,
+    },
+    phoneNumber: {
+      type: String,
+      required: false,
+    },
+    emergencyContact: {
+      type: String,
+      required: false,
+    },
+    canWalkUnassisted: {
+      type: Boolean,
+      required: false,
+    },
+    requiresADLAssistance: {
+      type: Boolean,
+      required: false,
+    },
+    hasMobilityAids: {
+      type: Boolean,
+      required: false,
+    },
+    mobilityAids: {
+      type: String,
+      required: false,
+    },
+    isReceivingTherapies: {
+      type: Boolean,
+      required: false,
+    },
+    therapies: {
+      type: String,
+      required: false,
+    },
+    isDeclarationAccepted: {
+      type: Boolean,
+      required: false,
+    },
+    patientSignature: {
+      type: String,
+      required: false,
+    },
+    date: {
+      type: Date,
       required: false,
     },
   },

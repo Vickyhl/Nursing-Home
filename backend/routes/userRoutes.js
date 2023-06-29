@@ -12,6 +12,7 @@ import {
   updateAppointment,
   saveSchedule,
   getSchedule,
+  admissionForm,
 } from "../controllers/userController.js";
 
 const router = Router();
@@ -38,5 +39,6 @@ router.post("/removeAppointment", removeAppointment);
 router.post("/updateAppointment", updateAppointment);
 router.get("/getSchedule", getSchedule);
 router.post("/saveSchedule", saveSchedule);
+router.post("/admissionForm", admissionForm);
 
 export default router;

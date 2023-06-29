@@ -50,6 +50,46 @@ export const getUserById = async (req, res, next) => {
   return res.json({ user });
 };
 
+export const admissionForm = async (req, res, next) => {
+  const formData = req.body;
+
+  try {
+    // Create a new user object with the form data
+    const newUser = new User({
+      fullName: formData.fullName,
+      dateOfBirth: formData.dateOfBirth,
+      ssn: formData.ssn,
+      address: formData.address,
+      phoneNumber: formData.phoneNumber,
+      emergencyContact: formData.emergencyContact,
+      canWalkUnassisted: formData.canWalkUnassisted,
+      requiresADLAssistance: formData.requiresADLAssistance,
+      hasMobilityAids: formData.hasMobilityAids,
+      mobilityAids: formData.mobilityAids,
+      isReceivingTherapies: formData.isReceivingTherapies,
+      therapies: formData.therapies,
+      isDeclarationAccepted: formData.isDeclarationAccepted,
+      patientSignature: formData.patientSignature,
+      date: formData.date,
+    });
+
+    // Save the user to the database
+    const savedUser = await newUser.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Admission form data saved successfully",
+      user: savedUser,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to save admission form data",
+      error: error.message,
+    });
+  }
+};
+
 export const getAppointments = async (req, res, next) => {
   // Create a new array to store the extracted appointments with patient names
   const extractedAppointments = [];

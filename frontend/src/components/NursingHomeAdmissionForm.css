@@ -1,0 +1,41 @@
+.admission-class {
+  margin: 60px auto;
+  width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  align-items: center;
+  min-height: 200px;
+  height: 1410px;
+  box-shadow: 0 -6px 20px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1.admission-header {
+  text-align: center;
+  margin-top: 70px;
+}
+
+.admission-input {
+  font-family: "RobotoCondensed-Regular";
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+.checkbox-label {
+  display: contents;
+  margin-right: 10px;
+}
+
+.admission-img {
+  z-index: -1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  height: 800px;
+  opacity: 0.5;
+}
