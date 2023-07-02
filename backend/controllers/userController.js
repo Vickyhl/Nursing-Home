@@ -50,6 +50,22 @@ export const getUserById = async (req, res, next) => {
   return res.json({ user });
 };
 
+export const getUserBySsn = async (req, res, next) => {
+  const ssn = req.query.ssn;
+
+  try {
+    const user = await User.findOne({ ssn }); // Find the user by their SSN
+    if (user) {
+      res.json({ exists: true }); // User exists
+    } else {
+      res.json({ exists: false }); // User does not exist
+    }
+  } catch (error) {
+    console.error("Error finding user:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 export const admissionForm = async (req, res, next) => {
   const formData = req.body;
 

@@ -67,3 +67,7 @@ input.patientId-input {
   border-radius: 4px;
   width: 155px;
 }
+
+.payment-method {
+  width: 242px;
+}

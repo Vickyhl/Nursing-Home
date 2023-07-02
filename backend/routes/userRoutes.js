@@ -13,6 +13,7 @@ import {
   saveSchedule,
   getSchedule,
   admissionForm,
+  getUserBySsn,
 } from "../controllers/userController.js";
 
 const router = Router();
@@ -40,5 +41,6 @@ router.post("/updateAppointment", updateAppointment);
 router.get("/getSchedule", getSchedule);
 router.post("/saveSchedule", saveSchedule);
 router.post("/admissionForm", admissionForm);
+router.get("/getUserBySsn", getUserBySsn);
 
 export default router;

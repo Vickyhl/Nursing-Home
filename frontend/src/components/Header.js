@@ -68,6 +68,9 @@ const Header = (handleClick) => {
       <li>
         <a href="/workSchedule">Work schedule</a>
       </li>
+      <li>
+        <a href="/paymentReview">Nursing home payment</a>
+      </li>
     </ul>
   );
 };

@@ -1,0 +1,30 @@
+.payment-class {
+  margin: 100px auto;
+  padding: 40px;
+  width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  align-items: center;
+  min-height: 200px;
+  height: 334px;
+  gap: 10px;
+  box-shadow: 0 -6px 20px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2.payment-header {
+  margin-top: -7px;
+}
+
+input.payment-input {
+  font-family: "RobotoCondensed-Regular";
+  margin: 0 auto;
+  width: fit-content;
+  border: 1px solid #000;
+  border-radius: 4px;
+  text-align: center;
+  margin-left: 10px;
+}
