@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-const Schema = mongoose.Schema;
 import uniqueValidator from "mongoose-unique-validator";
 import Appointment from "./appointmentModel.js";
 

@@ -39,6 +39,7 @@
     "jquery": "^3.6.3",
     "json2csv": "^6.0.0-alpha.2",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.4",
     "mongodb": "^4.11.0",
     "mongoose": "^6.7.4",
     "os-browserify": "^0.3.0",

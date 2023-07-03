@@ -12,6 +12,7 @@ import OrderingMedications from "./OrderingMedications";
 import NursingHomeAdmissionForm from "./NursingHomeAdmissionForm";
 import PaymentReviewPage from "./PaymentReviewPage";
 import NutritionalMonitoringPage from "./NutritionalMonitoringPage";
+import ManagementOfVisits from "./ManagementOfVisits";
 
 const Routes1 = () => {
   return (
@@ -28,6 +29,7 @@ const Routes1 = () => {
       <Route path="/orderMedication" element={<OrderingMedications />} />\
       <Route path="/admissionForm" element={<NursingHomeAdmissionForm />} />
       <Route path="/paymentReview" element={<PaymentReviewPage />} />
+      <Route path="/managementOfVisits" element={<ManagementOfVisits />} />
       <Route
         path="/nutritionalMonitoring"
         element={<NutritionalMonitoringPage />}
