@@ -431,7 +431,7 @@ export const login = async (req, res, next) => {
     );
     return next(error);
   }
-  // console.log(existingUser);
+
   if (!existingUser) {
     const error = new HttpError("Your email or password is incorrect", 401);
     // res.send({ message: "Your email or password is incorrect" });
@@ -447,6 +447,7 @@ export const login = async (req, res, next) => {
     );
     return next(error);
   }
+  console.log(isValidPassword);
 
   if (!isValidPassword) {
     const error = new HttpError("Your email or password is incorrect", 401);

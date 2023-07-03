@@ -4,9 +4,12 @@ import "./Header.css";
 
 const Header = (handleClick) => {
   const userData = JSON.parse(localStorage.getItem("user"));
-  const isAdmin = userData?.isAdmin;
-  const isStudent = userData?.student;
-  const isUser = userData?.user;
+  const isNurse = userData?.isNurse;
+  const isNursemaid = userData?.isNursemaid;
+  const isPatient = userData?.isPatient;
+  console.log(isNurse);
+  console.log(isNursemaid);
+  console.log(isPatient);
 
   const logOut = () => {
     localStorage.clear();
@@ -47,33 +50,54 @@ const Header = (handleClick) => {
       <li>
         <a href="/admissionForm">Admission form</a>
       </li>
-      <li>
-        <a href="/viewMedicalHistory">View Medical History</a>
-      </li>
-      <li className="dropdown">
-        <a href="" className="dropbtn">
-          Appointments
-        </a>
-        <div className="dropdown-content">
-          <a href="/viewAppointments">View Appointments</a>
-          <a href="/AddAppointments">Add new Appointment</a>
-        </div>
-      </li>
-      <li>
-        <a href="/AddMedications">Add medications</a>
-      </li>
-      <li>
-        <a href="/orderMedication">Order medication</a>
-      </li>
-      <li>
-        <a href="/workSchedule">Work schedule</a>
-      </li>
+      {isNurse && (
+        <li>
+          <a href="/viewMedicalHistory">View Medical History</a>
+        </li>
+      )}
+      {isNurse ||
+        (isNursemaid && (
+          <li className="dropdown">
+            <a href="" className="dropbtn">
+              Appointments
+            </a>
+            <div className="dropdown-content">
+              <a href="/viewAppointments">View Appointments</a>
+              <a href="/AddAppointments">Add new Appointment</a>
+            </div>
+          </li>
+        ))}
+      {isNurse && (
+        <li>
+          <a href="/AddMedications">Add medications</a>
+        </li>
+      )}
+      {isNurse && (
+        <li>
+          <a href="/orderMedication">Order medication</a>
+        </li>
+      )}
+      {isNurse ||
+        (isNursemaid && (
+          <li>
+            <a href="/workSchedule">Work schedule</a>
+          </li>
+        ))}
       <li>
         <a href="/paymentReview">Nursing home payment</a>
       </li>
-      <li>
-        <a href="/nutritionalMonitoring">Nutritional monitoring</a>
-      </li>
+      {isNurse ||
+        (isNursemaid && (
+          <li>
+            <a href="/nutritionalMonitoring">Nutritional monitoring</a>
+          </li>
+        ))}
+      {isNurse ||
+        (isNursemaid && (
+          <li>
+            <a href="/managementOfVisits">Visits</a>
+          </li>
+        ))}
     </ul>
   );
 };
