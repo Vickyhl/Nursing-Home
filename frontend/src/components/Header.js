@@ -71,6 +71,9 @@ const Header = (handleClick) => {
       <li>
         <a href="/paymentReview">Nursing home payment</a>
       </li>
+      <li>
+        <a href="/nutritionalMonitoring">Nutritional monitoring</a>
+      </li>
     </ul>
   );
 };

@@ -106,6 +106,63 @@ export const admissionForm = async (req, res, next) => {
   }
 };
 
+export const getUsersInfo = async (req, res, next) => {
+  const userId = req.params.uid;
+  console.log(userId);
+
+  try {
+    // Find the user in the database based on the user ID
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    // Extract the required information from the user object
+    const {
+      initialAssessment,
+      nutritionalGoals,
+      dietaryPlan,
+      nutritionalSupplements,
+      weightMeasurements,
+    } = user;
+
+    // Create an object containing the extracted information
+    const userInfo = {
+      initialAssessment,
+      nutritionalGoals,
+      dietaryPlan,
+      nutritionalSupplements,
+      weightMeasurements,
+    };
+
+    // Send back the user information in the response
+    res.status(200).json(userInfo);
+  } catch (error) {
+    // Handle any errors that occur during the retrieval process
+    console.log("Error retrieving user information:", error);
+    res.status(500).json({ message: "Error retrieving user information." });
+  }
+};
+
+export const updateUsersInfo = async (req, res, next) => {
+  const formData = req.body;
+  console.log(formData);
+  const userId = req.params.uid;
+  // const userId = "649c458a3b9c90750cca0369";
+  try {
+    // Update the user's information in the database
+    await User.findByIdAndUpdate(userId, formData);
+
+    // Respond with a success message or appropriate status code
+    res.status(200).json({ message: "User information updated successfully." });
+  } catch (error) {
+    // Handle any errors that occur during the update process
+    console.log("Error updating user information:", error);
+    res.status(500).json({ message: "Error updating user information." });
+  }
+};
+
 export const getAppointments = async (req, res, next) => {
   // Create a new array to store the extracted appointments with patient names
   const extractedAppointments = [];

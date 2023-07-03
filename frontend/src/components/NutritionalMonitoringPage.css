@@ -1,0 +1,36 @@
+.nutritional-class {
+  margin: 100px auto;
+  padding: 20px;
+  width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  align-items: center;
+  min-height: 200px;
+  height: 1020px;
+  box-shadow: 0 -6px 20px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nutritional-class-edit {
+  margin: 100px auto;
+  padding: 20px;
+  width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  align-items: center;
+  min-height: 200px;
+  height: 1170px;
+  box-shadow: 0 -6px 20px 20px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+  height: 130px;
+  width: 350px;
+}

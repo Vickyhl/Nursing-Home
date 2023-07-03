@@ -14,6 +14,8 @@ import {
   getSchedule,
   admissionForm,
   getUserBySsn,
+  updateUsersInfo,
+  getUsersInfo,
 } from "../controllers/userController.js";
 
 const router = Router();
@@ -42,5 +44,8 @@ router.get("/getSchedule", getSchedule);
 router.post("/saveSchedule", saveSchedule);
 router.post("/admissionForm", admissionForm);
 router.get("/getUserBySsn", getUserBySsn);
+router.get("/getUserBySsn", getUserBySsn);
+router.get("/getUsersInfo/:uid", getUsersInfo);
+router.post("/updateUsersInfo/:uid", updateUsersInfo);
 
 export default router;

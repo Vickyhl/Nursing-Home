@@ -64,6 +64,26 @@ const userSchema = mongoose.Schema(
       type: String,
       required: false,
     },
+    initialAssessment: {
+      type: String,
+      required: false,
+    },
+    nutritionalGoals: {
+      type: String,
+      required: false,
+    },
+    dietaryPlan: {
+      type: String,
+      required: false,
+    },
+    nutritionalSupplements: {
+      type: String,
+      required: false,
+    },
+    weightMeasurements: {
+      type: String,
+      required: false,
+    },
     allergies: [{}],
     medicalHistory: [
       {
