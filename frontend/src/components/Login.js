@@ -58,18 +58,16 @@ export const Login = () => {
 
           <label htmlFor="password">Password</label>
           <input
-            className="login-password-input"
+            className="login-input"
             type="password"
             id="password"
             name="password"
             value={user.password}
             onChange={handleChange}
           />
-          <div className="btn-container">
-            <button className="btn" onClick={handleSubmit}>
-              Login
-            </button>
-          </div>
+          <button className="btn-container" onClick={handleSubmit}>
+            Login
+          </button>
         </form>
       </div>
       <div className="loginPic">
