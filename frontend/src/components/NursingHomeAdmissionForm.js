@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { logAuditTrail } from "./LoggingService";
 import "./NursingHomeAdmissionForm.css";
 import back from "./images/back.jpeg";
 
@@ -51,6 +52,14 @@ function NursingHomeAdmissionForm() {
     console.log(result.data.success);
     if (result.data.success) {
       setMessage("Form submitted successfully!");
+      const userData = JSON.parse(localStorage.getItem("user"));
+      const { firstName, lastName } = userData;
+      const fullName = `${firstName} ${lastName}`;
+      logAuditTrail(
+        fullName,
+        "Creating admission form",
+        `${fullName} has created admission form for ${formData.fullName}`
+      );
     } else {
       setErrorMessage("Error submitting the form");
     }

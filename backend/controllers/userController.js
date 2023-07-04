@@ -120,6 +120,7 @@ export const getUsersInfo = async (req, res, next) => {
 
     // Extract the required information from the user object
     const {
+      fullName,
       initialAssessment,
       nutritionalGoals,
       dietaryPlan,
@@ -129,6 +130,7 @@ export const getUsersInfo = async (req, res, next) => {
 
     // Create an object containing the extracted information
     const userInfo = {
+      fullName,
       initialAssessment,
       nutritionalGoals,
       dietaryPlan,

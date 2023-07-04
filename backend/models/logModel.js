@@ -9,32 +9,13 @@ const logSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  action: {
+  eventName: {
     type: String,
     required: true,
   },
-  bloodType: {
-    type: String,
-  },
-  bloodAmount: {
-    type: String,
-  },
-  response: {
+  eventDetails: {
     type: String,
     required: true,
-  },
-  TransactionDescription: {
-    type: String,
-    required: true,
-  },
-  firsNameOfDonor: {
-    type: String,
-  },
-  lastNameOfDonor: {
-    type: String,
-  },
-  idOfDonor: {
-    type: Number,
   },
 });
 

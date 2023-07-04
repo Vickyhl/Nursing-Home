@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./AddMedications.css";
+import { logAuditTrail } from "./LoggingService";
 import back from "./images/medications.jpeg";
 
 function AddMedications() {
@@ -25,6 +26,14 @@ function AddMedications() {
     const result = await axios.post(
       `http://localhost:5000/api/medications/AddMedication`,
       medication
+    );
+    const userData = JSON.parse(localStorage.getItem("user"));
+    const { firstName, lastName } = userData;
+    const fullName = `${firstName} ${lastName}`;
+    logAuditTrail(
+      fullName,
+      "Adding medication to inventory",
+      `${fullName} has added ${medication.quantity} units of ${medication.name} to the inventory`
     );
     // Reset the form
     setMedication({

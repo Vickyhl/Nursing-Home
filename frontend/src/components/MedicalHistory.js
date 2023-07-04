@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "../components/ViewMedicalHistory.css";
+import "../components/MedicalHistory.css";
 import medicalHistoryLogo from "./images/medical-history.png";
+import { logAuditTrail } from "./LoggingService";
 import back from "./images/back.jpeg";
 import axios from "axios";
 
@@ -25,6 +26,14 @@ function MedicalHistory() {
     } else {
       setErrorMessage(null);
       setPatient(result.data.user);
+      const userData = JSON.parse(localStorage.getItem("user"));
+      const { firstName, lastName } = userData;
+      const fullName = `${firstName} ${lastName}`;
+      logAuditTrail(
+        fullName,
+        "Viewing medical history",
+        `${fullName} has viewed ${result.data.user.firstName} ${result.data.user.lastName} medical history`
+      );
     }
   };
 

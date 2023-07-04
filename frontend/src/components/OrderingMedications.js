@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { logAuditTrail } from "./LoggingService";
 import back from "./images/medications.jpeg";
 
 function OrderingMedications() {
@@ -23,7 +24,6 @@ function OrderingMedications() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Send the medication object to the backend
-    console.log(result);
     try {
       result = await (async () => {
         try {
@@ -42,6 +42,14 @@ function OrderingMedications() {
 
       if (result && !errorMessage) {
         setMessage("Medication found!");
+        const userData = JSON.parse(localStorage.getItem("user"));
+        const { firstName, lastName } = userData;
+        const fullName = `${firstName} ${lastName}`;
+        logAuditTrail(
+          fullName,
+          "Medication order",
+          `${fullName} has ordered ${medication.quantity} units of ${medication.name}`
+        );
       } else {
         setMessage(""); // Clear the message state
       }

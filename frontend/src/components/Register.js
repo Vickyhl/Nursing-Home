@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { logAuditTrail } from "./LoggingService";
 import { useNavigate } from "react-router-dom";
 import back from "./images/admission.jpeg";
 import "./Login.css";
@@ -63,6 +64,12 @@ const Register = () => {
     if (res.data.message === "Signing up failed, please try again later") {
       newErrors.signUp = "Signing up failed, please try again later";
     } else {
+      const fullName = `${firstName} ${lastName}`;
+      logAuditTrail(
+        fullName,
+        "System registration",
+        `${fullName} has registered to the system`
+      );
       navigate("/login");
     }
 

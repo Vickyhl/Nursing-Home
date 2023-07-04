@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
+import { logAuditTrail } from "./LoggingService";
 import "../components/Login.css";
 import "../components/ManagementOfVisits.css";
 import visitorsPic from "./images/visitors.png";
@@ -40,6 +41,15 @@ const ManagementOfVisits = () => {
       setVisitors([...visitors, addedVisitor]);
       setNewVisitor({ name: "", date: "", time: "" });
       setDisplayInputs(false);
+
+      const userData = JSON.parse(localStorage.getItem("user"));
+      const { firstName, lastName } = userData;
+      const fullName = `${firstName} ${lastName}`;
+      logAuditTrail(
+        fullName,
+        "Adding new visit",
+        `${fullName} has added a visit of ${newVisitor.name} at ${newVisitor.date} ${newVisitor.time}`
+      );
       console.log(result.data); // Handle the response data as needed
     } catch (error) {
       console.log(error); // Handle any errors that occur during the request

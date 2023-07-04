@@ -1,5 +1,6 @@
 import "./NutritionalMonitoringPage.css";
 import React, { useState } from "react";
+import { logAuditTrail } from "./LoggingService";
 import axios from "axios";
 
 const NutritionalMonitoringPage = () => {
@@ -52,6 +53,15 @@ const NutritionalMonitoringPage = () => {
       );
       console.log(response.data);
       const data = response.data;
+
+      const userData = JSON.parse(localStorage.getItem("user"));
+      const { firstName, lastName } = userData;
+      const fullName = `${firstName} ${lastName}`;
+      logAuditTrail(
+        fullName,
+        "Viewing patient nutritional info",
+        `${fullName} has viewed ${data.fullName} nutritional info`
+      );
 
       // Populate the form fields with the retrieved data
       setInitialAssessment(data.initialAssessment);

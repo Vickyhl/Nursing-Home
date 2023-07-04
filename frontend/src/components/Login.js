@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { logEvent } from "./LoggingService";
+import { logAuditTrail } from "./LoggingService";
 import "../components/Login.css";
 import loginPic from "./images/loginPic.jpg";
 
@@ -32,6 +32,14 @@ export const Login = () => {
       setErrorMessage("Your email or password is incorrect");
     } else if (result.data.existingUser) {
       localStorage.setItem("user", JSON.stringify(result.data.existingUser));
+      const userData = JSON.parse(localStorage.getItem("user"));
+      const { firstName, lastName } = userData;
+      const fullName = `${firstName} ${lastName}`;
+      logAuditTrail(
+        fullName,
+        "System login",
+        `${fullName} has logged in into the system`
+      );
       window.location.assign("/home");
     }
   };

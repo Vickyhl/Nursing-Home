@@ -55,49 +55,46 @@ const Header = (handleClick) => {
           <a href="/viewMedicalHistory">View Medical History</a>
         </li>
       )}
-      {isNurse ||
-        (isNursemaid && (
-          <li className="dropdown">
-            <a href="" className="dropbtn">
-              Appointments
-            </a>
-            <div className="dropdown-content">
-              <a href="/viewAppointments">View Appointments</a>
-              <a href="/AddAppointments">Add new Appointment</a>
-            </div>
-          </li>
-        ))}
-      {isNurse && (
-        <li>
-          <a href="/AddMedications">Add medications</a>
+      {(isNurse || isNursemaid) && (
+        <li className="dropdown">
+          <a href="" className="dropbtn">
+            Appointments
+          </a>
+          <div className="dropdown-content">
+            <a href="/viewAppointments">View Appointments</a>
+            <a href="/AddAppointments">Add new Appointment</a>
+          </div>
         </li>
       )}
       {isNurse && (
-        <li>
-          <a href="/orderMedication">Order medication</a>
+        <li className="dropdown">
+          <a href="" className="dropbtn">
+            Medications
+          </a>
+          <div className="dropdown-content">
+            <a href="/AddMedications">Add medications</a>
+            <a href="/AddAppointments">Order medication</a>
+          </div>
         </li>
       )}
-      {isNurse ||
-        (isNursemaid && (
-          <li>
-            <a href="/workSchedule">Work schedule</a>
-          </li>
-        ))}
+      {(isNurse || isNursemaid) && (
+        <li>
+          <a href="/workSchedule">Work schedule</a>
+        </li>
+      )}
       <li>
         <a href="/paymentReview">Nursing home payment</a>
       </li>
-      {isNurse ||
-        (isNursemaid && (
-          <li>
-            <a href="/nutritionalMonitoring">Nutritional monitoring</a>
-          </li>
-        ))}
-      {isNurse ||
-        (isNursemaid && (
-          <li>
-            <a href="/managementOfVisits">Visits</a>
-          </li>
-        ))}
+      {(isNurse || isNursemaid) && (
+        <li>
+          <a href="/nutritionalMonitoring">Nutritional monitoring</a>
+        </li>
+      )}
+      {(isNurse || isNursemaid) && (
+        <li>
+          <a href="/managementOfVisits">Visits</a>
+        </li>
+      )}
     </ul>
   );
 };

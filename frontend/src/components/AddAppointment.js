@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { logAuditTrail } from "./LoggingService";
 import back from "./images/back.jpeg";
 import "./AddAppointment.css";
 
+let usersFullName = "";
 function AddAppointment() {
   const [errorMessage, setErrorMessage] = useState("");
   const [date, setDate] = useState("");
@@ -13,6 +15,9 @@ function AddAppointment() {
   const [therapistName, setTherapistName] = useState("");
   const [patientId, setPatientId] = useState("");
   const [user, setUser] = useState(null);
+  const userData = JSON.parse(localStorage.getItem("user"));
+  const { firstName, lastName } = userData;
+  const fullName = `${firstName} ${lastName}`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +35,12 @@ function AddAppointment() {
       `http://localhost:5000/api/users/AddAppointment/${patientId}`,
       appointmen
     );
+
+    logAuditTrail(
+      fullName,
+      "Adding an appointment",
+      `${fullName} has added a new appointment for patient: ${usersFullName}. Date: ${date}, Time: ${time}`
+    );
     setErrorMessage("Form submitted!");
     console.log("Form submitted!");
   };
@@ -45,6 +56,7 @@ function AddAppointment() {
     } else {
       setErrorMessage(null);
       setUser(result.data.user);
+      usersFullName = `${result.data.user.firstName} ${result.data.user.lastName}`; // Update the fullName variable
     }
   };
   const handlePatientIdChange = async (e) => {
