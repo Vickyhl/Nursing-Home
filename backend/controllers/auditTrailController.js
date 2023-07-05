@@ -1,4 +1,5 @@
 import Log from "../models/logModel.js";
+import Medication from "../models/medicationModel.js";
 
 // Function to save an audit trail entry
 export const saveAuditTrail = async (req, res) => {
@@ -16,32 +17,19 @@ export const saveAuditTrail = async (req, res) => {
 };
 
 export const auditExport = async (req, res) => {
-  Log.find({}).then(function (docs) {
-    console.log(docs);
-    res.send(docs);
-  });
+  Log.find({})
+    .select("-_id -__v") // Exclude _id and __v properties from the results
+    .then(function (docs) {
+      // console.log(docs);
+      res.send(docs);
+    });
 };
 
-export const studentAuditExport = async (req, res) => {
-  let data;
-  await Log.find({}).then(function (docs) {
-    data = docs;
-  });
-
-  let docs = data.filter((item) => {
-    let lowerCasedAction = item.action.toLowerCase();
-    return (
-      lowerCasedAction.includes("blood request") ||
-      lowerCasedAction.includes("blood donation")
-    );
-  });
-
-  let updatedData = docs.map((item) => {
-    let { createdAt, updatedAt, __v, _id, ...keepAttrs } = item._doc;
-    return keepAttrs;
-  });
-
-  console.log(updatedData);
-
-  res.send(updatedData);
+export const medicationsExport = async (req, res) => {
+  Medication.find({})
+    .select("-_id -__v")
+    .then(function (docs) {
+      // console.log(docs);
+      res.send(docs);
+    });
 };

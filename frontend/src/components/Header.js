@@ -95,6 +95,11 @@ const Header = (handleClick) => {
           <a href="/managementOfVisits">Visits</a>
         </li>
       )}
+      {(isNurse || isNursemaid) && (
+        <li>
+          <a href="/exportData">Export</a>
+        </li>
+      )}
     </ul>
   );
 };

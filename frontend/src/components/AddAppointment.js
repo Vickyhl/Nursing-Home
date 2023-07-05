@@ -39,7 +39,7 @@ function AddAppointment() {
     logAuditTrail(
       fullName,
       "Adding an appointment",
-      `${fullName} has added a new appointment for patient: ${usersFullName}. Date: ${date}, Time: ${time}`
+      `${fullName} has added an appointment for: ${usersFullName} at: ${date} ${time}`
     );
     setErrorMessage("Form submitted!");
     console.log("Form submitted!");

@@ -13,6 +13,7 @@ import NursingHomeAdmissionForm from "./NursingHomeAdmissionForm";
 import PaymentReviewPage from "./PaymentReviewPage";
 import NutritionalMonitoringPage from "./NutritionalMonitoringPage";
 import ManagementOfVisits from "./ManagementOfVisits";
+import Export from "./Export";
 
 const Routes1 = () => {
   return (
@@ -30,6 +31,7 @@ const Routes1 = () => {
       <Route path="/admissionForm" element={<NursingHomeAdmissionForm />} />
       <Route path="/paymentReview" element={<PaymentReviewPage />} />
       <Route path="/managementOfVisits" element={<ManagementOfVisits />} />
+      <Route path="/exportData" element={<Export />} />
       <Route
         path="/nutritionalMonitoring"
         element={<NutritionalMonitoringPage />}
